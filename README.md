@@ -1,3 +1,3 @@
-#### Humble template for my typeScript things
+## A humble, but interesting; application for people who have hair and those who cuts hair
 
-##### learning is a curve and i'm drifting on it
+##### It's called SHAVE OUT OF IT.
