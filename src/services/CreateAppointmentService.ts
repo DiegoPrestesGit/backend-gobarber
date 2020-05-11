@@ -2,25 +2,26 @@ import Appointment from '../models/Appointment'
 import { startOfHour } from 'date-fns'
 import { getCustomRepository } from 'typeorm'
 import AppointmentsRepository from '../repositories/AppointmentsRepository'
+import AppError from '../errors/AppError'
 
 interface RequestDTO {
-  provider: string,
+  provider_id: string,
   date: Date
 }
 
 class CreateAppointmentService {
-  public async execute ({ provider, date }: RequestDTO): Promise<Appointment> {
+  public async execute ({ provider_id, date }: RequestDTO): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository)
     const appointmentDate = startOfHour(date)
 
     const findAppointmentInSameDate = await appointmentsRepository.findByDate(appointmentDate)
 
     if (findAppointmentInSameDate) {
-      throw Error('bad time to cut your hair, mate')
+      throw new AppError('bad time to cut your hair, mate')
     }
 
     const appointment = appointmentsRepository.create({
-      provider,
+      provider_id,
       date: appointmentDate
     })
 
