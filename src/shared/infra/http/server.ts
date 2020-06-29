@@ -4,11 +4,11 @@ import 'express-async-errors'
 
 import 'reflect-metadata'
 import routes from './routes/index.routes'
-import uploadConfig from './config/upload'
 
-import AppError from './errors/AppError'
+import uploadConfig from '@config/upload'
+import AppError from '@shared/errors/AppError'
 
-import './database'
+// import '@shared/infra/typeorm'
 
 const app = express()
 app.use(cors())
