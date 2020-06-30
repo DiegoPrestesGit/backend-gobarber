@@ -9,6 +9,7 @@ import AppError from '@shared/errors/AppError'
 import routes from '@shared/infra/http/routes/index.routes'
 
 import '@shared/infra/typeorm'
+import '@shared/container/index'
 
 const app = express()
 app.use(cors())
