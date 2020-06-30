@@ -34,15 +34,6 @@ class UsersRepository implements IUserRepository {
   public async save (user: User): Promise<User> {
     return this.ormRepository.save(user)
   }
-
-  public async findByDate (date: Date): Promise<User | undefined> {
-    const findAppointent = await this.ormRepository.findOne({
-      where: { date }
-
-    })
-
-    return findAppointent || undefined
-  }
 }
 
 export default UsersRepository
