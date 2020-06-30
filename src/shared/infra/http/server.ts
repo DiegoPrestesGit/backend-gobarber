@@ -1,12 +1,12 @@
+import 'reflect-metadata'
+
 import express, { Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import 'express-async-errors'
-
-import 'reflect-metadata'
-import routes from './routes/index.routes'
-
 import uploadConfig from '@config/upload'
 import AppError from '@shared/errors/AppError'
+
+import routes from '@shared/infra/http/routes/index.routes'
 
 import '@shared/infra/typeorm'
 
