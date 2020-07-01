@@ -33,9 +33,20 @@
 
   **Requisitos Funcionais**
 
+  * O usuário deve poder listar seus agendamentos de um dia específico;
+  * O prestador deve receber uma notificação quando houver um novo agendamento;
+  * O prestador deve poder visualizar as notificações ainda não lidas.
+
   **Requisitos Não Funcionais**
 
+  * Os agendamentos do prestador no dia devem ser armazenados em cache;
+  * As notificações do prestador devem ser armazenadas no MongoDB;
+  * As notificações do prestador devem ser enviadas em tempo-real utilizando Socket.io.
+
   **Regras de Negócio**
+
+  * A notificação deve ter um status de lida ou não-lida para o prestador poder ter controle.
+
 
 # Agendamento de serviços
 
