@@ -31,4 +31,29 @@
 
 # Painel do prestador
 
+  **Requisitos Funcionais**
+
+  **Requisitos Não Funcionais**
+
+  **Regras de Negócio**
+
 # Agendamento de serviços
+
+  **Requisitos Funcionais**
+
+  * O usuário deve poder listar todos os prestadores de serviço cadastrados;
+  * O usuário deve poder listar os dias de um mês com pelo menos um horário disponível de um prestador;
+  * O usuário deve poder listar os horários disponíveis em um dia e de um prestador específico;
+  * O usuário deve poder realizar um novo agendamento com um prestador.
+
+  **Requisitos Não Funcionais**
+
+  * A listagem de prestadores deve ser armazenada em cache.
+
+  **Regras de Negócio**
+
+  * Cada agendamento deve durar 1h exata;
+  * Os agendamentos devem estar disponíveis entre 8h e 18h (primeiro às 8h e último às 17h);
+  * O usuário não pode agendar em um horário já ocupado;
+  * O usuário não pode agendar em um horário que já passou;
+  * O usuário não pode agendar serviços consigo mesmo.
