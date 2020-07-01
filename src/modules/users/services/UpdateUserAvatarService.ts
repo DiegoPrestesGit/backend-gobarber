@@ -7,6 +7,7 @@ import uploadConfig from '@config/upload'
 
 import User from '@modules/users/infra/typeorm/entities/User'
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider'
 
 interface IRequestDTO {
   user_id: string,
@@ -17,7 +18,11 @@ interface IRequestDTO {
 class UpdateUserAvatarService {
   constructor (
     @inject('UserRepository')
-    private usersRepository: IUsersRepository) { }
+    private usersRepository: IUsersRepository,
+
+    @inject('StorageProvider')
+    private storageRepository: IStorageProvider
+  ) { }
 
   public async execute ({ user_id, avatarFileName }: IRequestDTO): Promise<User> {
     const user = await this.usersRepository.findById(user_id)
@@ -27,17 +32,13 @@ class UpdateUserAvatarService {
     }
 
     if (user.avatar) {
-      const userAvatarFilePath = path.join(uploadConfig.diretory, user.avatar)
-      const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath)
-
-      if (userAvatarFileExists) {
-        await fs.promises.unlink(userAvatarFilePath)
-      }
+      await this.storageRepository.deleteFile(user.avatar)
     }
 
-    user.avatar = avatarFileName
-    await this.usersRepository.save(user)
+    const fileName = await this.storageRepository.saveFile(avatarFileName)
+    user.avatar = fileName
 
+    await this.usersRepository.save(user)
     return user
   }
 }
