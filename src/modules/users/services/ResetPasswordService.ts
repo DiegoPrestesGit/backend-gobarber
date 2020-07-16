@@ -2,9 +2,10 @@ import { injectable, inject } from 'tsyringe'
 
 import AppError from '@shared/errors/AppError'
 
-import User from '@modules/users/infra/typeorm/entities/User'
+import { isAfter, addHours } from 'date-fns'
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository'
+import IHashProvider from '../providers/HashProvider/models/IHashProvider'
 
 interface IRequestDTO {
   password: string
@@ -18,7 +19,10 @@ class SendForgotPasswordEmailService {
     private usersRepository: IUsersRepository,
 
     @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository
+    private userTokensRepository: IUserTokensRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute ({ password, token }: IRequestDTO): Promise<void> {
@@ -34,7 +38,14 @@ class SendForgotPasswordEmailService {
       throw new AppError('User token does not exists')
     }
 
-    user.password = password
+    const tokenCreatedAt = userToken.created_at
+    const compareDate = addHours(tokenCreatedAt, 2)
+
+    if (isAfter(Date.now(), compareDate)) {
+      throw new AppError('Token expired')
+    }
+
+    user.password = await this.hashProvider.generateHash(password)
 
     await this.usersRepository.save(user)
   }
