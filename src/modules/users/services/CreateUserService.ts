@@ -15,11 +15,12 @@ interface IRequestDTO {
 @injectable()
 class CreateUserService {
   constructor (
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-
     @inject('HashProvider')
-    private hashProvider: IHashProvider
+    private hashProvider: IHashProvider,
+
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository
+
   ) {}
 
   public async execute ({ name, email, password }: IRequestDTO): Promise<User> {

@@ -13,7 +13,7 @@ interface IRequestDTO {
 }
 
 @injectable()
-class SendForgotPasswordEmailService {
+export default class ResetPasswordService {
   constructor (
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -27,7 +27,7 @@ class SendForgotPasswordEmailService {
 
   public async execute ({ password, token }: IRequestDTO): Promise<void> {
     const userToken = await this.userTokensRepository.findByToken(token)
-
+    console.log(userToken)
     if (!userToken) {
       throw new AppError('User token does not exists')
     }
@@ -50,5 +50,3 @@ class SendForgotPasswordEmailService {
     await this.usersRepository.save(user)
   }
 }
-
-export default SendForgotPasswordEmailService
