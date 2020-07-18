@@ -17,7 +17,7 @@ interface IRequestDTO {
 @injectable()
 export default class UpdateProfileService {
   constructor (
-    @inject('UserRepository')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')

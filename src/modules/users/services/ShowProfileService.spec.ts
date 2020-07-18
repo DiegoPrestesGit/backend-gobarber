@@ -21,11 +21,12 @@ describe('UpdateUserProfile', () => {
     const profile = await showProfile.execute({ user_id: user.id })
 
     expect(profile.email).toBe('johnnycasher@gloiro.com')
+    expect(profile.name).toBe('Johnny Cash')
   })
 
   it('should not be able to show the profile of a non-existing user', async () => {
     expect(showProfile.execute({
-      user_id: 'it does not exists'
-    })).toBeInstanceOf(AppError)
+      user_id: 'DO. NOT. EXISTS'
+    })).rejects.toBeInstanceOf(AppError)
   })
 })

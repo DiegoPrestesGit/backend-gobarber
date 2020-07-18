@@ -35,6 +35,29 @@ describe('UpdateUserProfile', () => {
     expect(updatedUser.email).toBe('johnnydogs@gloiro.com')
   })
 
+  it('should not be able to update the file of a non-existing user', async () => {
+    expect(updateProfile.execute({
+      user_id: 'IT DOES NOT EXISTS',
+      name: 'Izzy Stradlin',
+      email: 'hedoesnotexist@xesquedele.com'
+    })).rejects.toBeInstanceOf(AppError)
+  })
+
+  it('should not be able to update the file of a non-existing user', async () => {
+    const user = await fakeUsersRepository.create({
+      name: 'Johnny Cash',
+      email: 'johnnycash@gloiro.com',
+      password: '123456'
+    })
+
+    await expect(updateProfile.execute({
+      user_id: user.id,
+      name: 'Johnny Cash',
+      email: 'johnnycash@gloiro.com',
+      password: '123123'
+    })).rejects.toBeInstanceOf(AppError)
+  })
+
   it('should not be able to update his email to another user email', async () => {
     await fakeUsersRepository.create({
       name: 'Johnny Cash',
