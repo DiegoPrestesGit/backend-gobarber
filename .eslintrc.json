@@ -25,7 +25,7 @@
     "camelcase": "off",
     "no-useless-constructor": "off",
     "no-unused-expressions": "off",
-    "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }],
+    "@typescript-eslint/interface-name-prefix": ["warn", { "prefixWithI": "always" }],
     "import/extensions": [
       "error",
       "ignorePackages",
