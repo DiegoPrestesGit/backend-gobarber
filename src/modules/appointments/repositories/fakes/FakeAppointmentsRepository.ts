@@ -35,8 +35,6 @@ class FakeAppointmentsRepository implements IAppointmentsRepository {
       )
     })
 
-    console.log('asGKFGUJKGJMG', allAppointments)
-
     return allAppointments
   }
 
@@ -49,8 +47,6 @@ class FakeAppointmentsRepository implements IAppointmentsRepository {
         getYear(app.date) === year
       )
     })
-
-    console.log('asueaeuhaueh', allAppointments)
 
     return allAppointments
   }
