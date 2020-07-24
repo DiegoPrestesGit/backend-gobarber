@@ -34,11 +34,12 @@ export default class ListProviderDayAvailabilityService {
 
     const eachHourArray = Array.from({ length: 10 }, (_, index) => index + hourStart)
 
+    const currentDate = new Date(Date.now())
+
     const availability = eachHourArray.map(hour => {
       const hasAppointment = appointments.find(appointment =>
         getHours(appointment.date) === hour)
 
-      const currentDate = new Date(Date.now())
       const appointmentDate = new Date(year, month - 1, day, hour)
 
       return {
