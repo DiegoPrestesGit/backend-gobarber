@@ -1,6 +1,6 @@
-import { injectable, inject } from 'tsyringe'
-import { getDaysInMonth, getDate } from 'date-fns'
-
+import { getDate, getDaysInMonth } from 'date-fns'
+import 'reflect-metadata'
+import { inject, injectable } from 'tsyringe'
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository'
 
 interface IRequestDTO {
@@ -18,8 +18,7 @@ type IResponse = Array <{
 export default class ListProviderAvailabilityService {
   constructor (
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository
-  ) { }
+    private appointmentsRepository: IAppointmentsRepository) {}
 
   public async execute ({ provider_id, month, year }: IRequestDTO): Promise<IResponse> {
     const appointments = await this.appointmentsRepository.findAllInMonthFromProvider({

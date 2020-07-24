@@ -6,8 +6,8 @@ let fakeAppointmentsRepository: FakeAppointmentsRepository
 
 describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
-    listProviderMonthAvailability = new ListProviderMonthAvailability(fakeAppointmentsRepository)
     fakeAppointmentsRepository = new FakeAppointmentsRepository()
+    listProviderMonthAvailability = new ListProviderMonthAvailability(fakeAppointmentsRepository)
   })
 
   it('should be able to list the month availability from provider', async () => {
