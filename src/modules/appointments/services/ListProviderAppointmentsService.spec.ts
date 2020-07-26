@@ -5,13 +5,13 @@ import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRe
 let listProviderAppointmentsService: ListProviderAppointmentsService
 let fakeAppointmentsRepository: FakeAppointmentsRepository
 
-describe('ListProviderDayAvailability', () => {
+describe('ListProviderAppointments', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository()
     listProviderAppointmentsService = new ListProviderAppointmentsService(fakeAppointmentsRepository)
   })
 
-  it('should be able to list the appointments of the especific day', async () => {
+  it('should be able to list the appointments of the specific day', async () => {
     const app1 = await fakeAppointmentsRepository.create({
       provider_id: 'provider',
       user_id: 'user',
