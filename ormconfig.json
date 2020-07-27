@@ -1,6 +1,6 @@
 [
   {
-    "name": "default",
+    "name": "defaulttt",
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
