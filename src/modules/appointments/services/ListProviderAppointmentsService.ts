@@ -23,12 +23,22 @@ export default class ListProviderAppointmentsService {
   ) {}
 
   public async execute ({ provider_id, day, month, year }: IRequestDTO): Promise<Appointment[]> {
-    const appointments = await this.appointmentsRepository.findAllInDayFromProvider({
-      provider_id,
-      day,
-      month,
-      year
-    })
+    const cacheKey = `provider-appointments:${provider_id}-${year}-${month}-${day}`
+
+    let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey)
+
+    if (!appointments) {
+      appointments = await this.appointmentsRepository.findAllInDayFromProvider({
+        provider_id,
+        day,
+        month,
+        year
+      })
+
+      console.log('BUSCANDO')
+
+      await this.cacheProvider.save(cacheKey, appointments)
+    }
 
     return appointments
   }
