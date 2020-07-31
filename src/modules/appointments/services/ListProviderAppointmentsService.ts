@@ -35,8 +35,6 @@ export default class ListProviderAppointmentsService {
         year
       })
 
-      console.log('BUSCANDO')
-
       await this.cacheProvider.save(cacheKey, appointments)
     }
 
