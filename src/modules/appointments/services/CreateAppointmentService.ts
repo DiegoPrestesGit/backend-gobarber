@@ -30,7 +30,7 @@ class CreateAppointmentService {
   public async execute ({ provider_id, user_id, date }: IRequestDTO): Promise<Appointment> {
     const appointmentDate = startOfHour(date)
 
-    const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(appointmentDate)
+    const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(appointmentDate, provider_id)
 
     if (findAppointmentInSameDate) {
       throw new AppError('bad time to cut your hair, mate')
