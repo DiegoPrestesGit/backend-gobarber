@@ -8,8 +8,8 @@ import IUserTokensRepository from '@modules/users/repositories/IUserTokensReposi
 import IHashProvider from '../providers/HashProvider/models/IHashProvider'
 
 interface IRequestDTO {
-  password: string
-  token: string,
+  password: string,
+  token: string
 }
 
 @injectable()
