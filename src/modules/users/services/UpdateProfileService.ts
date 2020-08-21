@@ -12,6 +12,7 @@ interface IRequestDTO {
   email: string,
   old_password?: string,
   password?: string
+  password_confirmation?: string;
 }
 
 @injectable()
