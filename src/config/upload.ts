@@ -2,8 +2,6 @@ import path from 'path'
 import crypto from 'crypto'
 import multer, { StorageEngine } from 'multer'
 
-const tempFolder = path.resolve(__dirname, '..', '..', 'temp')
-
 interface IUploadConfig {
   tempFolder: string
   uploadsFolder: string
@@ -21,6 +19,8 @@ interface IUploadConfig {
     }
   }
 }
+
+const tempFolder = path.resolve(__dirname, '..', '..', 'temp')
 
 export default {
   driver: process.env.STORAGE_DRIVER,
