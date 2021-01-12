@@ -10,7 +10,6 @@ class FakeUsersRepository implements IUserRepository {
 
   public async findAllProviders ({ except_user_id }: IFindAllProvidersDTO): Promise<User[]> {
     let users = this.users
-
     if (except_user_id) {
       users = this.users.filter(user => user.id !== except_user_id)
     }
