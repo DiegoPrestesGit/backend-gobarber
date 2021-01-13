@@ -12,7 +12,7 @@ export default class ProfileController {
     const showProfile = container.resolve(ShowProfileService)
     const user = await showProfile.execute({ user_id })
 
-    delete user.password
+    user.password = ''
 
     return response.json(classToClass(user))
   }
