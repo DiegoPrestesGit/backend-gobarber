@@ -17,6 +17,7 @@ interface IResponse {
   user: User,
   token: string
 }
+
 @injectable()
 class AuthenticateUserService {
   constructor (
@@ -25,7 +26,7 @@ class AuthenticateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider
-  ) {}
+  ) { }
 
   public async execute ({ email, password }: IRequestDTO): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email)

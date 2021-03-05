@@ -4,3 +4,4 @@ temp/*
 .env
 ormconfig.json
 .vscode
+coverage
